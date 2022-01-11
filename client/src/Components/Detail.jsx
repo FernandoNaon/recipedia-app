@@ -23,33 +23,62 @@ const Detail = () => {
       <div>
         <h1>{recipeDetail.name}</h1>
         <img src={recipeDetail.image} alt={recipeDetail.name} />
-        <h4>summary</h4>
-        <h6>{recipeDetail.summary}</h6>
-        <h4>rating</h4>
-        <h6>{recipeDetail.rating}</h6>
         <div>
-          <h3>Steps: </h3>
-          <ul>
-            {Array.isArray(recipeDetail.steps) ? (
-              recipeDetail.steps.map((e) => {
-                return <li key={e.number}>{e.step}</li>;
-              })
-            ) : (
-              <li>No instructions given</li>
-            )}
-          </ul>
+          <h4>summary</h4>
+          <h6>{recipeDetail.summary?.replace(/<[^>]*>/g, "")}</h6>
         </div>
-        <h4>healthScore</h4>
-        <h6>{recipeDetail.healthScore}</h6>
         <div>
-          <h3>Diets</h3>
-          {!recipeDetail.createdInDb
-            ? recipeDetail.diets + " "
-            : recipeDetail.diets.map((e) => {
-                return <h6 key={e.name}>{e.name}</h6>;
+          <h4>How good it is</h4>
+          <h6>{recipeDetail.rating}</h6>
+        </div>
+        <div>
+          <h4>How healthy it is</h4>
+          <h6>{recipeDetail.healthScore}</h6>
+        </div>
+        <div>
+          {recipeDetail.steps ? (
+            <div>
+              <h3>Steps: </h3>
+              <ul>
+                {Array.isArray(recipeDetail.steps) ? (
+                  recipeDetail.steps.map((e) => {
+                    return <li key={e.number}>{e.step}</li>;
+                  })
+                ) : (
+                  <li>{recipeDetail.steps}</li>
+                )}
+              </ul>
+            </div>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div>
+          {!recipeDetail.diets || !recipeDetail.createdInDb ? (
+            <div>
+              <h3>Diets</h3>
+              {!recipeDetail.createdInDb
+                ? recipeDetail.diets + " "
+                : recipeDetail.diets.map((e) => {
+                    return <h6 key={e.name}>{e.name}</h6>;
+                  })}
+            </div>
+          ) : (
+            <br />
+          )}
+        </div>
+        <div>
+          {recipeDetail.dishType ? (
+            <div>
+              <h4>Dish Type: </h4>
+              {recipeDetail.dishType?.map((e) => {
+                return <h6 key={e}>{e}</h6>;
               })}
+            </div>
+          ) : (
+            <br />
+          )}
         </div>
-        <div></div>
       </div>
     </div>
   );
