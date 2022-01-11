@@ -27,17 +27,29 @@ const Detail = () => {
         <h6>{recipeDetail.summary}</h6>
         <h4>rating</h4>
         <h6>{recipeDetail.rating}</h6>
-        <h4>instructions</h4>
-        <h6>{recipeDetail.instructions}</h6>
+        <div>
+          <h3>Steps: </h3>
+          <ul>
+            {Array.isArray(recipeDetail.steps) ? (
+              recipeDetail.steps.map((e) => {
+                return <li key={e.number}>{e.step}</li>;
+              })
+            ) : (
+              <li>No instructions given</li>
+            )}
+          </ul>
+        </div>
         <h4>healthScore</h4>
         <h6>{recipeDetail.healthScore}</h6>
-        <h2>Diets</h2>
-        {!recipeDetail.createdInDb
-          ? recipeDetail.diets + " "
-          : // : recipeDetail.diets.map((e) => e.name + " ")}
-            recipeDetail.diets.map((e) => {
-              return <h6>{e.name}</h6>;
-            })}
+        <div>
+          <h3>Diets</h3>
+          {!recipeDetail.createdInDb
+            ? recipeDetail.diets + " "
+            : recipeDetail.diets.map((e) => {
+                return <h6 key={e.name}>{e.name}</h6>;
+              })}
+        </div>
+        <div></div>
       </div>
     </div>
   );

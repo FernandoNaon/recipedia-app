@@ -8,9 +8,7 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
       <button onClick={refresh}>Refresh</button>
       <div>
         <select onChange={(e) => filterByDiets(e)}>
-          <option value="DEFAULT" disabled>
-            Diets
-          </option>
+          <option value="DEFAULT">Diets</option>
           <option value="all">All</option>
           console.log(diets)
           {diets?.map((diets, i) => {
@@ -30,6 +28,9 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
       <SearchBar />
       <Link to="/create">
         <button>Submit your recipe</button>
+      </Link>
+      <Link to="/about">
+        <button>About</button>
       </Link>
     </div>
   );

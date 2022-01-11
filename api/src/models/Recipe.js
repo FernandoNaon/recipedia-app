@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    instructions: {
+    steps: {
       type: DataTypes.TEXT,
       allowNull: true,
     },

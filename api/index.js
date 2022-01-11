@@ -19,22 +19,21 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn, Diet } = require("./src/db.js");
+// const axios = require("axios");
+// const { API_KEY6 } = process.env;
 
 const typeOfDiets = [
   "gluten free",
   "ketogenic",
-  "lacto vegetarian",
-  "lacto ovo vegetarian",
-  "ovo vegetarian",
-  "paleolithic",
-  "pescetarian",
-  "primal",
-  "vegan",
   "vegetarian",
+  "lacto vegetarian",
+  "ovo vegetarian",
+  "vegan",
+  "pescetarian",
+  "paleo",
+  "primal",
+  "low fodmap",
   "whole 30",
-  "dairy free",
-  "fodmap friendly",
-  "whole",
 ];
 
 // Syncing all the models at once.
@@ -54,6 +53,15 @@ conn.sync({ force: true }).then(async () => {
       name: diet,
     });
   });
+
+  // const res = await axios.get(
+  //   ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
+  // );
+  // const modelDiet = res.data.results.filter((e) => ({
+  //   name: e.diets,
+  // }));
+  // const filterDiet = [...new Set(dietas)];
+  // await Diet.bulkCreate(modelDiet);
 
   server.listen(3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console

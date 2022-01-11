@@ -18,19 +18,6 @@ const getRecipes = async () => {
       };
     });
     let recipesDb = await Recipe.findAll({
-      // attributes: [
-      //   "id",
-      //   "name",
-      //   "summary",
-      //   "rating",
-      //   // "healthScore",
-      // ],
-      // include: [
-      //   {
-      //     model: Diet,
-      //   },
-      // ],
-
       include: {
         model: Diet,
         attributes: ["name"],
@@ -67,14 +54,7 @@ const getByName = async (name) => {
           [Op.iLike]: `%${name}%`,
         },
       },
-      attributes: [
-        "id",
-        "name",
-        "summary",
-        "rating",
-        "healthScore",
-        "instructions",
-      ],
+      attributes: ["id", "name", "summary", "rating", "healthScore", "steps"],
       include: {
         model: Diet,
       },
@@ -86,62 +66,6 @@ const getByName = async (name) => {
     console.log(error);
   }
 };
-
-// const getById = async (id) => {
-//   try {
-//     if (id.length > 10) {
-//       // let resDb = await Recipe.findOne({
-//       //   where: {
-//       //     id: id,
-//       //   },
-//       //   attributes: [
-//       //     "id",
-//       //     "name",
-//       //     "summary",
-//       //     "rating",
-//       //     "healthScore",
-//       //     "instructions",
-//       //   ],
-//       //   include: {
-//       //     model: Diet,
-//       //   },
-//       // });
-
-//       let detailDb = await Recipe.findByPk(id, {
-//         include: {
-//           model: Diet,
-//           attributes: ["name"],
-//           through: {
-//             attributes: [],
-//           },
-//         },
-//       });
-//       // return resDb;
-//     } else {
-//       const resApi = await axios.get(
-//         ` https://api.spoonacular.com/recipes/${id}/information/?apiKey=${API_KEY6}`
-//       );
-
-//       let detailApi = {
-//         name: resApi.data.title,
-//         image: resApi.data.image,
-//         dishType: resApi.data.dishTypes,
-//         summary: resApi.data.summary,
-//         diets: resApi.data.diets,
-//         rating: resApi.data.spoonacularScore,
-//         healthScore: resApi.data.healthScore,
-//         instructions: resApi.data.instructions,
-//       };
-//       console.log(id + " " + "es el id");
-
-//       // return detailApi;
-
-//       let totalID = [...detailDb, ...detailApi];
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 
 const getDbbyId = async (id) => {
   try {
@@ -174,7 +98,12 @@ const getApiById = async (id) => {
         diets: resApi.data.diets,
         rating: resApi.data.spoonacularScore,
         healthScore: resApi.data.healthScore,
-        instructions: resApi.data.instructions,
+        steps: resApi.data.analyzedInstructions[0]?.steps.map((e) => {
+          return {
+            number: e.number,
+            step: e.step,
+          };
+        }),
       };
 
       return detailApi;

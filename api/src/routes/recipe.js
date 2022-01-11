@@ -3,15 +3,14 @@ const router = Router();
 const { postRecipe } = require("../Controllers/RecipeControllers");
 
 router.post("/", async function (req, res, next) {
-  const { name, summary, rating, healthScore, instructions, diets, image } =
-    req.body;
+  const { name, summary, rating, healthScore, steps, diets, image } = req.body;
   try {
     const addRecipe = await postRecipe(
       name,
       summary,
       rating,
       healthScore,
-      instructions,
+      steps,
       diets,
       image
     );

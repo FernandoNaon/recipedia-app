@@ -37,9 +37,9 @@ const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiets());
-    // return () => {
-    //   dispatch(trueLoader());
-    // };
+    return () => {
+      dispatch(trueLoader());
+    };
     // eslint-disable-next-line
   }, []);
 

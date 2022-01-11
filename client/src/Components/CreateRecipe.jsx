@@ -3,16 +3,44 @@ import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createRecipe, getDiets } from "../Actions";
+
+export function validate(input) {
+  let errors = {};
+
+  if (!input.name) {
+    errors.name = "Title is required!";
+  }
+
+  if (!input.summary) {
+    errors.summary = "Summary is required!";
+  }
+
+  if (!input.rating) {
+    errors.rating = "Rating is required!";
+  } else if (input.rating < 0 || input.rating > 100) {
+    errors.rating = "Rating has to be between 0 and 100!";
+  }
+
+  if (!input.healthScore) {
+    errors.healthScore = "Healthy Score is required!";
+  } else if (input.healthScore < 0 || input.healthScore > 100) {
+    errors.healthScore = "Healthy Score has to be between 0 and 100!";
+  }
+
+  return errors;
+}
+
 const CreateRecipe = () => {
   const dispatch = useDispatch();
-  let history = useHistory();
-  let allDiets = useSelector((state) => state.diets);
-  let [input, setInput] = useState({
+  const history = useHistory();
+  const allDiets = useSelector((state) => state.diets);
+  const [errors, setErrors] = useState({});
+  const [input, setInput] = useState({
     name: "",
     summary: "",
     rating: "",
     healthScore: "",
-    instructions: "",
+    steps: "",
     diets: [],
   });
 
@@ -20,21 +48,29 @@ const CreateRecipe = () => {
     dispatch(getDiets());
   }, [dispatch]);
 
-  function handleInputChange(e) {
-    e.preventDefault();
-    setInput({
-      ...input,
+  // function handleInputChange(e) {
+  //   e.preventDefault();
+  //   setInput({
+  //     ...input,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // }
+
+  const handleInputChange = (e) => {
+    setInput((prevInput) => ({
+      ...prevInput,
       [e.target.name]: e.target.value,
-    });
-  }
+    }));
+
+    let errors = validate({ ...input, [e.target.name]: e.target.value });
+    setErrors(errors);
+  };
 
   function handleCheck(e) {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        diets: [...input.diets, e.target.value],
-      });
-    }
+    setInput({
+      ...input,
+      diets: [...input.diets, e.target.value],
+    });
   }
 
   function handleSubmit(e) {
@@ -46,7 +82,7 @@ const CreateRecipe = () => {
       summary: "",
       rating: "",
       healthScore: "",
-      instructions: "",
+      steps: "",
       diets: [],
     });
     history.push("/home");
@@ -82,7 +118,7 @@ const CreateRecipe = () => {
           <div>
             <label>Image:</label>
             <input
-              type="text"
+              type="url"
               value={input.image}
               name="image"
               onChange={(e) => handleInputChange(e)}
@@ -95,8 +131,6 @@ const CreateRecipe = () => {
               type="number"
               value={input.rating}
               name="rating"
-              min="0"
-              max="100"
               onChange={(e) => handleInputChange(e)}
             />
           </div>
@@ -107,23 +141,21 @@ const CreateRecipe = () => {
               type="number"
               value={input.healthScore}
               name="healthScore"
-              min="0"
-              max="100"
               onChange={(e) => handleInputChange(e)}
             />
           </div>
           <div>
-            <label>Instructions</label>
+            <label>Steps</label>
             <input
               type="text"
-              value={input.instructions}
-              name="instructions"
+              value={input.steps}
+              name="steps"
               onChange={(e) => handleInputChange(e)}
             />
           </div>
 
           {allDiets?.map((el) => (
-            <div>
+            <div key={el}>
               <input
                 type="checkbox"
                 value={el}
@@ -133,7 +165,22 @@ const CreateRecipe = () => {
               <label>{el}</label>
             </div>
           ))}
-          <button>Submit</button>
+          {/* <button type="submit">Submit</button> */}
+          <div>
+            {/* Mensajes de error */}
+            {errors.name && <div>{errors.name}</div>}
+            {errors.summary && <div>{errors.summary}</div>}
+            {errors.rating && <div>{errors.rating}</div>}
+            {errors.healthScore && <div>{errors.healthScore}</div>}
+
+            {input.name !== "" &&
+              !errors.name &&
+              !errors.summary &&
+              !errors.rating &&
+              !errors.healthScore && (
+                <button onClick={handleSubmit}>Create</button>
+              )}
+          </div>
         </form>
       </div>
     </div>

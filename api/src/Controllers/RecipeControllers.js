@@ -5,7 +5,7 @@ const postRecipe = async (
   summary,
   rating,
   healthScore,
-  instructions,
+  steps,
   diets, // se lo envio por body desde el front y lo relaciona con la tabla intermedia
   image
 ) => {
@@ -18,7 +18,7 @@ const postRecipe = async (
       summary,
       rating,
       healthScore,
-      instructions,
+      steps,
       image,
     });
 

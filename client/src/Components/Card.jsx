@@ -13,15 +13,13 @@ const Card = ({ id, image, name, diets }) => {
               if (typeof diet === "object") {
                 return (
                   <div key={i}>
-                    {" "}
-                    <span> {diet.name} </span> <br />{" "}
+                    <span> {diet.name} </span>
                   </div>
                 );
               }
               return (
                 <div key={i}>
-                  {" "}
-                  <span> {diet} </span> <br />{" "}
+                  <span> {diet} </span>
                 </div>
               );
             })
@@ -29,23 +27,6 @@ const Card = ({ id, image, name, diets }) => {
             <span> No Diets... </span>
           )}
         </div>
-
-        {/* <div>
-          {diets?.map((diets) => {
-            return <h5>{`${diets}`}</h5>;
-          })}
-        </div> */}
-
-        {/* <div>
-          <h4>Diet Type: </h4>
-          {createdInDb
-            ? diets.map((e) => {
-                return <h6 key={e}>{e}</h6>;
-              })
-            : diets?.map((e) => {
-                return <h6 key={e.name}>{e.name}</h6>;
-              })}
-        </div> */}
       </div>
     </Link>
   );
