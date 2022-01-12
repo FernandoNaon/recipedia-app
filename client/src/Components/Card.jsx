@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Card.module.css";
 
 const Card = ({ id, image, name, diets }) => {
   return (
-    <Link to={`/recipes/${id}`}>
-      <div>
-        <h3>{name}</h3>
-        <img src={image} alt={image} />
-        <div>
+    <Link to={`/recipes/${id}`} style={{ textDecoration: "none" }}>
+      <div className={styles.cardContainer}>
+        <h3 className={styles.title}>{name}</h3>
+        <img className={styles.cardImage} src={image} alt={image} />
+        <div className={styles.diets}>
           {diets && diets.length > 0 ? (
             diets.map((diet, i) => {
               if (typeof diet === "object") {

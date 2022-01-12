@@ -1,13 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import styles from "./NavBar.module.css";
 
 const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
   return (
-    <div>
-      <button onClick={refresh}>Refresh</button>
+    <div className={styles.navContainer}>
       <div>
-        <select onChange={(e) => filterByDiets(e)}>
+        <button onClick={refresh} className={styles.title}>
+          Recipedia 🍽️
+        </button>
+      </div>
+      {/* <div>
+        <button onClick={refresh}>Refresh</button>
+      </div> */}
+      <div>
+        <select className={styles.select} onChange={(e) => handleSort(e)}>
+          <option value="DEFAULT">Order By</option>
+          <option value="abc-asc">ABC ↑</option>
+          <option value="abc-des">ABC ↓</option>
+          <option value="score-asc">Score ↑</option>
+          <option value="score-des">Score ↓</option>
+        </select>
+      </div>
+      <div>
+        <select className={styles.select} onChange={(e) => filterByDiets(e)}>
           <option value="DEFAULT">Diets</option>
           <option value="all">All</option>
           console.log(diets)
@@ -16,21 +33,12 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
           })}
         </select>
       </div>
-      <div>
-        <select onChange={(e) => handleSort(e)}>
-          <option value="DEFAULT">Order By</option>
-          <option value="abc-asc">ABC ↑</option>
-          <option value="abc-des">ABC ↓</option>
-          <option value="score-asc">Score ↑</option>
-          <option value="score-des">Score ↓</option>
-        </select>
-      </div>
       <SearchBar />
-      <Link to="/create">
-        <button>Submit your recipe</button>
+      <Link to="/about" className={styles.submit}>
+        <button className={styles.submit}>About</button>
       </Link>
-      <Link to="/about">
-        <button>About</button>
+      <Link to="/create" className={styles.submit}>
+        <button className={styles.submit}>Submit your recipe</button>
       </Link>
     </div>
   );

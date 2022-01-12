@@ -11,6 +11,7 @@ import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Paged from "./Paged";
 import Loader from "./Loader";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -65,26 +66,30 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <NavBar
-        filterByDiets={handleFilterDiets}
-        diets={diets}
-        handleSort={handleSort}
-        refresh={handleRefresh}
-      />
-      {loader ? (
-        <Loader />
-      ) : (
-        <div>
-          <Paged
-            recipesPerPage={recipesPerPage}
-            allRecipes={allRecipes}
-            currentPage={currentPage}
-            paged={paged}
-          />
-          <Cards allRecipes={recipesQuantity} />
-        </div>
-      )}
+    <div className={styles.fullpage}>
+      <div className={styles.navContainer}>
+        <NavBar
+          filterByDiets={handleFilterDiets}
+          diets={diets}
+          handleSort={handleSort}
+          refresh={handleRefresh}
+        />
+      </div>
+      <div className={styles.cardsContainer}>
+        {loader ? (
+          <Loader />
+        ) : (
+          <div>
+            <Paged
+              recipesPerPage={recipesPerPage}
+              allRecipes={allRecipes}
+              currentPage={currentPage}
+              paged={paged}
+            />
+            <Cards allRecipes={recipesQuantity} diets={diets} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

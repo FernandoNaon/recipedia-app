@@ -3,32 +3,33 @@ import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createRecipe, getDiets } from "../Actions";
+import { validate } from "../Utils/Validate";
 
-export function validate(input) {
-  let errors = {};
+// export function validate(input) {
+//   let errors = {};
 
-  if (!input.name) {
-    errors.name = "Title is required!";
-  }
+//   if (!input.name) {
+//     errors.name = "Title is required!";
+//   }
 
-  if (!input.summary) {
-    errors.summary = "Summary is required!";
-  }
+//   if (!input.summary) {
+//     errors.summary = "Summary is required!";
+//   }
 
-  if (!input.rating) {
-    errors.rating = "Rating is required!";
-  } else if (input.rating < 0 || input.rating > 100) {
-    errors.rating = "Rating has to be between 0 and 100!";
-  }
+//   if (!input.rating) {
+//     errors.rating = "Rating is required!";
+//   } else if (input.rating < 0 || input.rating > 100) {
+//     errors.rating = "Rating has to be between 0 and 100!";
+//   }
 
-  if (!input.healthScore) {
-    errors.healthScore = "Healthy Score is required!";
-  } else if (input.healthScore < 0 || input.healthScore > 100) {
-    errors.healthScore = "Healthy Score has to be between 0 and 100!";
-  }
+//   if (!input.healthScore) {
+//     errors.healthScore = "Healthy Score is required!";
+//   } else if (input.healthScore < 0 || input.healthScore > 100) {
+//     errors.healthScore = "Healthy Score has to be between 0 and 100!";
+//   }
 
-  return errors;
-}
+//   return errors;
+// }
 
 const CreateRecipe = () => {
   const dispatch = useDispatch();
@@ -47,14 +48,6 @@ const CreateRecipe = () => {
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
-
-  // function handleInputChange(e) {
-  //   e.preventDefault();
-  //   setInput({
-  //     ...input,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // }
 
   const handleInputChange = (e) => {
     setInput((prevInput) => ({
