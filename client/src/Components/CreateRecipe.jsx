@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createRecipe, getDiets } from "../Actions";
 import { validate } from "../Utils/Validate";
+import styles from "./CreateRecipe.module.css";
 
 // export function validate(input) {
 //   let errors = {};

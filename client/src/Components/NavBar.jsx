@@ -25,7 +25,9 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
       </div>
       <div>
         <select className={styles.select} onChange={(e) => filterByDiets(e)}>
-          <option value="DEFAULT">Diets</option>
+          <option value="DEFAULT" disabled>
+            Diets
+          </option>
           <option value="all">All</option>
           console.log(diets)
           {diets?.map((diets, i) => {

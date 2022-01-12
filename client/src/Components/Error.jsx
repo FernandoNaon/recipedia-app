@@ -7,7 +7,7 @@ const Error = () => {
     <div className={styles.container}>
       <div className={styles.cardContainer}>
         <h3 className={styles.title}>Sorry! No recipes founded</h3>
-        <img className={styles.cardImage} src={image} alt="Error image" />
+        <img className={styles.cardImage} src={image} alt="Recipe not found" />
         <div className={styles.diets}></div>
       </div>
     </div>

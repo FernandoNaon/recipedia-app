@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { getDetail } from "../Actions";
+import styles from "./Detail.module.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -16,68 +17,108 @@ const Detail = () => {
   let { id } = useParams();
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Back</button>
-      </Link>
-      <div>
-        <h1>{recipeDetail.name}</h1>
-        <img src={recipeDetail.image} alt={recipeDetail.name} />
+    <div className={styles.detailBg}>
+      <div className={styles.bar}>
         <div>
-          <h4>summary</h4>
-          <h6>{recipeDetail.summary?.replace(/<[^>]*>/g, "")}</h6>
+          <button className={styles.title}>Recipedia 🍽️</button>
         </div>
-        <div>
-          <h4>How good it is</h4>
-          <h6>{recipeDetail.rating}</h6>
-        </div>
-        <div>
-          <h4>How healthy it is</h4>
-          <h6>{recipeDetail.healthScore}</h6>
-        </div>
-        <div>
-          {recipeDetail.steps ? (
+        <h1 className={styles.title}>{recipeDetail.name}</h1>
+        <Link to="/home">
+          <button className={styles.btn}>Back</button>
+        </Link>
+      </div>
+      <div className={styles.detailContainer}>
+        <div className={styles.side}>
+          <img
+            className={styles.detailImg}
+            src={recipeDetail.image}
+            alt={recipeDetail.name}
+          />
+          <div>
+            <h4 className={styles.titleTwo}>Summary</h4>
+            <h6 className={styles.summary}>
+              {recipeDetail.summary?.replace(/<[^>]*>/g, "")}
+            </h6>
+          </div>
+          <div className={styles.boxInf}>
             <div>
-              <h3>Steps: </h3>
-              <ul>
-                {Array.isArray(recipeDetail.steps) ? (
-                  recipeDetail.steps.map((e) => {
-                    return <li key={e.number}>{e.step}</li>;
+              <h4 className={styles.titleTwo}>How good it is</h4>
+              <h6 className={styles.text}>{recipeDetail.rating}/100</h6>
+            </div>
+            <div>
+              <h4 className={styles.titleTwo}>How healthy it is</h4>
+              <h6 className={styles.text}>{recipeDetail.healthScore}/100</h6>
+            </div>
+          </div>
+        </div>
+        <div className={styles.side}>
+          <div>
+            {recipeDetail.steps ? (
+              <div>
+                <h4 className={styles.titleTwo}>Steps</h4>
+                <ul>
+                  {Array.isArray(recipeDetail.steps) ? (
+                    recipeDetail.steps.map((e) => {
+                      return (
+                        <li key={e.number}>
+                          {e.number} - {e.step}
+                        </li>
+                      );
+                    })
+                  ) : (
+                    <li>{recipeDetail.steps}</li>
+                  )}
+                </ul>
+              </div>
+            ) : (
+              <br />
+            )}
+          </div>
+
+          <div className={styles.boxInf}>
+            {recipeDetail.diets || recipeDetail.createdInDb ? (
+              <div>
+                <h4 className={styles.titleTwo}>Diets</h4>
+                {recipeDetail.diets || recipeDetail.createdInDb ? (
+                  recipeDetail?.diets.map((diet, i) => {
+                    if (typeof diet === "object") {
+                      return (
+                        <div key={i}>
+                          <h6> {diet.name} </h6>
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div key={i}>
+                          <h6> {diet} </h6>
+                        </div>
+                      );
+                    }
                   })
                 ) : (
-                  <li>{recipeDetail.steps}</li>
+                  <br />
                 )}
-              </ul>
-            </div>
-          ) : (
-            <br />
-          )}
-        </div>
-        <div>
-          {!recipeDetail.diets || !recipeDetail.createdInDb ? (
+              </div>
+            ) : (
+              <br />
+            )}
             <div>
-              <h3>Diets</h3>
-              {!recipeDetail.createdInDb
-                ? recipeDetail.diets + " "
-                : recipeDetail.diets.map((e) => {
-                    return <h6 key={e.name}>{e.name}</h6>;
+              {recipeDetail.dishType ? (
+                <div>
+                  <h4 className={styles.titleTwo}>Dish Type: </h4>
+                  {recipeDetail.dishType?.map((e) => {
+                    return (
+                      <h6 className={styles.text} key={e}>
+                        {e}
+                      </h6>
+                    );
                   })}
+                </div>
+              ) : (
+                <br />
+              )}
             </div>
-          ) : (
-            <br />
-          )}
-        </div>
-        <div>
-          {recipeDetail.dishType ? (
-            <div>
-              <h4>Dish Type: </h4>
-              {recipeDetail.dishType?.map((e) => {
-                return <h6 key={e}>{e}</h6>;
-              })}
-            </div>
-          ) : (
-            <br />
-          )}
+          </div>
         </div>
       </div>
     </div>

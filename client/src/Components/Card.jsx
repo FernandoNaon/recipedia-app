@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
+import Error from "./Error";
 
 const Card = ({ id, image, name, diets }) => {
   return (
@@ -17,15 +18,16 @@ const Card = ({ id, image, name, diets }) => {
                     <span> {diet.name} </span>
                   </div>
                 );
+              } else {
+                return (
+                  <div key={i}>
+                    <span> {diet} </span>
+                  </div>
+                );
               }
-              return (
-                <div key={i}>
-                  <span> {diet} </span>
-                </div>
-              );
             })
           ) : (
-            <span> No Diets... </span>
+            <Error />
           )}
         </div>
       </div>

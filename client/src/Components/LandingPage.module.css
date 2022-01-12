@@ -13,7 +13,7 @@
 .titleContainer {
   /* background-color: #ffffff10; */
   backdrop-filter: blur(1px);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .title {

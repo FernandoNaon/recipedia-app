@@ -86,9 +86,9 @@ const Home = () => {
               currentPage={currentPage}
               paged={paged}
             />
-            <Cards allRecipes={recipesQuantity} diets={diets} />
           </div>
         )}
+        <Cards allRecipes={recipesQuantity} />
       </div>
     </div>
   );
