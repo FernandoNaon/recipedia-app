@@ -20,11 +20,13 @@ const Detail = () => {
     <div className={styles.detailBg}>
       <div className={styles.bar}>
         <div>
-          <button className={styles.title}>Recipedia 🍽️</button>
+          <Link to="/home">
+            <button className={styles.btn}>Recipedia 🍽️</button>
+          </Link>
         </div>
         <h1 className={styles.title}>{recipeDetail.name}</h1>
-        <Link to="/home">
-          <button className={styles.btn}>Back</button>
+        <Link to="/create">
+          <button className={styles.btn}>Submit your recipe</button>
         </Link>
       </div>
       <div className={styles.detailContainer}>
@@ -56,7 +58,7 @@ const Detail = () => {
             {recipeDetail.steps ? (
               <div>
                 <h4 className={styles.titleTwo}>Steps</h4>
-                <ul>
+                <ul className={styles.paragraph}>
                   {Array.isArray(recipeDetail.steps) ? (
                     recipeDetail.steps.map((e) => {
                       return (

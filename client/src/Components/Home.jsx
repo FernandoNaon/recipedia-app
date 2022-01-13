@@ -11,6 +11,7 @@ import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Paged from "./Paged";
 import Loader from "./Loader";
+import Footer from "./Footer";
 import styles from "./Home.module.css";
 
 const Home = () => {
@@ -89,6 +90,9 @@ const Home = () => {
           </div>
         )}
         <Cards allRecipes={recipesQuantity} />
+      </div>
+      <div className={styles.footerContainer}>
+        <Footer />
       </div>
     </div>
   );
