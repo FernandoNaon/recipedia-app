@@ -1,9 +1,11 @@
 import React from "react";
+import styles from "./Loader.module.css";
+import gif from "../Assets/loading gif 1.gif";
 
 const Loader = () => {
   return (
-    <div>
-      <h1>Loading....</h1>
+    <div className={styles.loaderContainer}>
+      <img src={gif} alt="Loading..." />
     </div>
   );
 };

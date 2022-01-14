@@ -12,7 +12,7 @@ const postRecipe = async (
   try {
     if (!image)
       image =
-        "https://thumbs.dreamstime.com/b/destapadura-de-un-secreto-9621305.jpg";
+        "https://1.bp.blogspot.com/-otqwtLOpwV0/Xym3NGXtoEI/AAAAAAAAiNE/pB8iXR2dHP0ergt-pmVa1LaIZkohhHs2ACLcBGAsYHQ/w410-h307/la%2Bnota%2Buno.jpg";
     let newRecipe = await Recipe.create({
       name,
       summary,

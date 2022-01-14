@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
-import Error from "./Error";
 
 const Card = ({ id, image, name, diets }) => {
   return (
@@ -27,7 +26,7 @@ const Card = ({ id, image, name, diets }) => {
               }
             })
           ) : (
-            <Error />
+            <br />
           )}
         </div>
       </div>

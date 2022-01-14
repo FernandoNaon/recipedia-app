@@ -10,15 +10,14 @@ import {
 import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Paged from "./Paged";
-import Loader from "./Loader";
-import Footer from "./Footer";
+// import Loader from "./Loader";
 import styles from "./Home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const diets = useSelector((state) => state.diets);
-  console.log(diets.length);
+  // console.log(diets.length);
   const loader = useSelector((state) => state.loader);
   const [, setOrder] = useState(""); // Poder explicar esto
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,22 +76,16 @@ const Home = () => {
         />
       </div>
       <div className={styles.cardsContainer}>
-        {loader ? (
-          <Loader />
-        ) : (
-          <div>
-            <Paged
-              recipesPerPage={recipesPerPage}
-              allRecipes={allRecipes}
-              currentPage={currentPage}
-              paged={paged}
-            />
-          </div>
-        )}
-        <Cards allRecipes={recipesQuantity} />
-      </div>
-      <div className={styles.footerContainer}>
-        <Footer />
+        <div>
+          <Paged
+            recipesPerPage={recipesPerPage}
+            allRecipes={allRecipes}
+            currentPage={currentPage}
+            paged={paged}
+          />
+          <Cards allRecipes={recipesQuantity} loader={loader} />
+          <div>{recipesQuantity.length ? null : <h1>error</h1>}</div>
+        </div>
       </div>
     </div>
   );

@@ -6,9 +6,9 @@ const Error = () => {
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
-        <h3 className={styles.title}>Sorry! No recipes founded</h3>
+        <h3 className={styles.title}>Sorry!</h3>
         <img className={styles.cardImage} src={image} alt="Recipe not found" />
-        <div className={styles.diets}></div>
+        <div className={styles.diets}>No recipes founded</div>
       </div>
     </div>
   );
