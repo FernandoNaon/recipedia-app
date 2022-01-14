@@ -11,9 +11,6 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
           Recipedia 🍽️
         </button>
       </div>
-      {/* <div>
-        <button onClick={refresh}>Refresh</button>
-      </div> */}
       <div>
         <select className={styles.select} onChange={(e) => handleSort(e)}>
           <option value="DEFAULT">Order By</option>
@@ -36,9 +33,6 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
         </select>
       </div>
       <SearchBar />
-      {/* <Link to="/about" className={styles.submit}>
-        <button className={styles.submit}>About</button>
-      </Link> */}
       <Link to="/create" className={styles.submit}>
         <button className={styles.submit}>Submit your recipe</button>
       </Link>

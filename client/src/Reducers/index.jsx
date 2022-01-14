@@ -7,7 +7,6 @@ import {
   ORDER_BY,
   POST_RECIPE,
   LOADER_TRUE,
-  LOADER_FALSE,
 } from "../Actions/index";
 
 const initialState = {
@@ -45,7 +44,11 @@ function rootReducer(state = initialState, action) {
       let filteredDiets =
         action.payload === "all"
           ? recipesCopy
-          : recipesCopy.filter((el) => el.diets.includes(action.payload)); //types puede ser diets
+          : recipesCopy.filter(
+              (el) =>
+                el.diets.includes(action.payload) ||
+                el.diets.map((e) => e.name).includes(action.payload)
+            );
       return {
         ...state,
         recipes: filteredDiets,
@@ -115,11 +118,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         loader: true,
       };
-    case LOADER_FALSE:
-      return {
-        ...state,
-        loader: false,
-      };
+
     default:
       return state;
   }

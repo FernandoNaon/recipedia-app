@@ -4,10 +4,12 @@ import styles from "./Cards.module.css";
 import Loader from "./Loader";
 // import Error from "./Error";
 
-const Cards = ({ allRecipes }) => {
+const Cards = ({ allRecipes, loader }) => {
   return (
     <div>
-      {allRecipes.length ? (
+      {loader ? (
+        <Loader />
+      ) : (
         <div className={styles.cardsContainer}>
           {allRecipes?.map((el) => {
             return (
@@ -22,8 +24,6 @@ const Cards = ({ allRecipes }) => {
             );
           })}
         </div>
-      ) : (
-        <Loader />
       )}
     </div>
   );

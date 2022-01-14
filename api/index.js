@@ -39,16 +39,6 @@ const typeOfDiets = [
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async () => {
-  // typeOfDiets.forEach((e) => {
-  //   let el = e;
-  //   Diet.findOrCreate({
-  //     where: { name: el },
-  //     defaults: {
-  //       name: el,
-  //     },
-  //   });
-  // });
-
   typeOfDiets.map((diet) => {
     Diet.create({
       name: diet,
@@ -61,8 +51,8 @@ conn.sync({ force: true }).then(async () => {
   // const modelDiet = res.data.results.filter((e) => ({
   //   name: e.diets,
   // }));
-  // const filterDiet = [...new Set(dietas)];
-  // await Diet.bulkCreate(modelDiet);
+  // // const filterDiet = [...new Set([modelDiet])];
+  // await Diet.create(modelDiet.name);
 
   server.listen(3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console

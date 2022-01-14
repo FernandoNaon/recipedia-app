@@ -10,8 +10,8 @@ import {
 import Cards from "./Cards";
 import NavBar from "./NavBar";
 import Paged from "./Paged";
-// import Loader from "./Loader";
 import styles from "./Home.module.css";
+import Loader from "./Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,8 +41,7 @@ const Home = () => {
     return () => {
       dispatch(trueLoader());
     };
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   function handleFilterDiets(e) {
     e.preventDefault();
@@ -76,16 +75,19 @@ const Home = () => {
         />
       </div>
       <div className={styles.cardsContainer}>
-        <div>
-          <Paged
-            recipesPerPage={recipesPerPage}
-            allRecipes={allRecipes}
-            currentPage={currentPage}
-            paged={paged}
-          />
-          <Cards allRecipes={recipesQuantity} loader={loader} />
-          <div>{recipesQuantity.length ? null : <h1>error</h1>}</div>
-        </div>
+        {loader ? (
+          <Loader />
+        ) : (
+          <div>
+            <Paged
+              recipesPerPage={recipesPerPage}
+              allRecipes={allRecipes}
+              currentPage={currentPage}
+              paged={paged}
+            />
+            <Cards allRecipes={recipesQuantity} loader={loader} />
+          </div>
+        )}
       </div>
     </div>
   );

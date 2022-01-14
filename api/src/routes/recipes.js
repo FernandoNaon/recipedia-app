@@ -13,9 +13,9 @@ router.get("/", async (req, res, next) => {
     if (name) {
       const recipeByName = await getByName(name);
 
-      getByName.length
+      recipeByName.length
         ? res.status(200).json(recipeByName)
-        : res.status(404).send("Recipe not found");
+        : res.status(404).json({ message: "Recipe not found" });
     } else {
       const allRecipes = await getRecipes();
 
@@ -29,14 +29,17 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
-    if (id.length > 7) {
+    if (typeof id === "string" && id.length > 15) {
       const dbId = await getDbbyId(id);
-      res.status(200).json(dbId);
-    } else if (id.length < 7) {
-      const apiId = await getApiById(id);
-      res.status(200).json(apiId);
+
+      dbId
+        ? res.status(200).json(dbId)
+        : res.status(404).json({ message: "Recipe not found" });
     } else {
-      res.status(404).send("Recipe not found");
+      const apiId = await getApiById(id);
+      apiId
+        ? res.status(200).json(apiId)
+        : res.status(404).json({ message: "Recipe not found" });
     }
   } catch (error) {
     next(error);

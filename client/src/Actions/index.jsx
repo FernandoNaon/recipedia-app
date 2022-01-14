@@ -7,7 +7,6 @@ export const GET_DETAIL = "GET_DETAIL";
 export const ORDER_BY = "ORDER_BY";
 export const POST_RECIPE = "POST_RECIPE";
 export const LOADER_TRUE = "LOADER_TRUE";
-export const LOADER_FALSE = "LOADER_FALSE";
 
 export const getRecipes = () => {
   return async (dispatch) => {
@@ -35,7 +34,6 @@ export const getByName = (name) => {
       });
     } catch (err) {
       console.log(err);
-      alert("Nombre de receta incorrecto");
     }
   };
 };
@@ -113,11 +111,5 @@ export const createRecipe = (newRecipe) => {
 export function trueLoader() {
   return {
     type: "LOADER_TRUE",
-  };
-}
-
-export function falseLoader() {
-  return {
-    type: "LOADER_FALSE",
   };
 }
