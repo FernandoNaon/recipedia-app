@@ -6,7 +6,10 @@ router.get("/", async function (req, res, next) {
   try {
     let allDiets = await Diet.findAll();
     let dietTypes = allDiets.map((d) => d.name);
-    res.json(dietTypes);
+
+    dietTypes
+      ? res.status(200).json(dietTypes)
+      : res.status(404).send("Diet types not found");
     // console.log(dietTypes);
   } catch (err) {
     next(err);

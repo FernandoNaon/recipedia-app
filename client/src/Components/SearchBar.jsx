@@ -12,13 +12,13 @@ const SearchBar = () => {
     setName(e.target.value);
   };
 
-  function handleSubmitName(e) {
+  const handleSubmitName = (e) => {
     e.preventDefault();
     dispatch(getByName(name));
     setName("");
     e.target.reset();
     dispatch(trueLoader());
-  }
+  };
 
   return (
     <div>

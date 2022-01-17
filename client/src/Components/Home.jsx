@@ -19,15 +19,15 @@ const Home = () => {
   const diets = useSelector((state) => state.diets);
   console.log(diets.length);
   const loader = useSelector((state) => state.loader);
-  const [, setOrder] = useState(""); // Poder explicar esto
+  const [, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   let recipesPerPage = 9;
 
-  const indexOfLastCountry = currentPage * recipesPerPage;
-  const indexOfFirstCountry = indexOfLastCountry - recipesPerPage;
+  const indexOfLastRecipe = currentPage * recipesPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
   const recipesQuantity = allRecipes.slice(
-    indexOfFirstCountry,
-    indexOfLastCountry
+    indexOfFirstRecipe,
+    indexOfLastRecipe
   );
 
   const paged = (page) => {
@@ -43,11 +43,11 @@ const Home = () => {
     };
   }, [dispatch]);
 
-  function handleFilterDiets(e) {
+  const handleFilterDiets = (e) => {
     e.preventDefault();
     dispatch(filterByDiets(e.target.value));
     setCurrentPage(1);
-  }
+  };
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -56,13 +56,13 @@ const Home = () => {
     setOrder(e.target.value);
   };
 
-  function handleRefresh(e) {
+  const handleRefresh = (e) => {
     e.preventDefault();
     dispatch(getRecipes());
     dispatch(getDiets());
     setCurrentPage(1);
     dispatch(trueLoader());
-  }
+  };
 
   return (
     <div className={styles.fullpage}>

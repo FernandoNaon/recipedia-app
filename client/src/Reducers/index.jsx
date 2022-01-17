@@ -53,6 +53,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipes: filteredDiets,
+        loader: false,
       };
     case GET_DETAIL:
       return {

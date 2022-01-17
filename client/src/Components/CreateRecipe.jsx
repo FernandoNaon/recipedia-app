@@ -34,16 +34,16 @@ const CreateRecipe = () => {
     setErrors(errors);
   };
 
-  function handleCheck(e) {
+  const handleCheck = (e) => {
     if (e.target.checked) {
-      setInput({
-        ...input,
+      setInput((prevInput) => ({
+        ...prevInput,
         diets: [...input.diets, e.target.value],
-      });
+      }));
     }
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createRecipe(input));
     alert("Recipe created!");
@@ -56,7 +56,7 @@ const CreateRecipe = () => {
       diets: [],
     });
     history.push("/home");
-  }
+  };
 
   return (
     <div className={styles.createBg}>

@@ -40,6 +40,9 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
         </select>
       </div>
       <SearchBar />
+      <Link to="/about" className={styles.submit}>
+        <button className={styles.submit}>About</button>
+      </Link>
       <Link to="/create" className={styles.submit}>
         <button className={styles.submit}>Submit your recipe</button>
       </Link>
