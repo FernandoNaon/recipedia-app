@@ -1,14 +1,16 @@
 import React from "react";
 import Card from "./Card";
 import styles from "./Cards.module.css";
-import Loader from "./Loader";
-// import Error from "./Error";
+// import { useSelector } from "react-redux";
+// import Loader from "./Loader";
+import Error from "./Error";
 
-const Cards = ({ allRecipes, loader }) => {
+const Cards = ({ allRecipes }) => {
+  // const loader = useSelector((state) => state.loader);
   return (
     <div>
-      {loader ? (
-        <Loader />
+      {!allRecipes.length ? (
+        <Error />
       ) : (
         <div className={styles.cardsContainer}>
           {allRecipes?.map((el) => {

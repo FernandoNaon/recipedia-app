@@ -15,6 +15,7 @@ const initialState = {
   diets: [],
   detail: [],
   loader: true,
+  error: "",
 };
 
 function rootReducer(state = initialState, action) {

@@ -17,7 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
   const diets = useSelector((state) => state.diets);
-  // console.log(diets.length);
+  console.log(diets.length);
   const loader = useSelector((state) => state.loader);
   const [, setOrder] = useState(""); // Poder explicar esto
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +85,7 @@ const Home = () => {
               currentPage={currentPage}
               paged={paged}
             />
-            <Cards allRecipes={recipesQuantity} loader={loader} />
+            <Cards allRecipes={recipesQuantity} />
           </div>
         )}
       </div>

@@ -12,6 +12,7 @@
 }
 
 .cardsContainer {
+  flex: 1 1 150px;
   margin-top: 123px;
   margin-bottom: 80px;
   width: 100%;

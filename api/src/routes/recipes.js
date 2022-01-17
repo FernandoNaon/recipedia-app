@@ -15,11 +15,12 @@ router.get("/", async (req, res, next) => {
 
       recipeByName.length
         ? res.status(200).json(recipeByName)
-        : res.status(404).json({ message: "Recipe not found" });
+        : res.status(404).send("Recipe not found");
     } else {
       const allRecipes = await getRecipes();
-
-      res.status(200).json(allRecipes);
+      allRecipes.length
+        ? res.status(200).json(allRecipes)
+        : res.status(404).send("Something went wrong");
     }
   } catch (error) {
     next(error);
@@ -34,12 +35,12 @@ router.get("/:id", async (req, res, next) => {
 
       dbId
         ? res.status(200).json(dbId)
-        : res.status(404).json({ message: "Recipe not found" });
+        : res.status(404).send("Recipe not found");
     } else {
       const apiId = await getApiById(id);
       apiId
         ? res.status(200).json(apiId)
-        : res.status(404).json({ message: "Recipe not found" });
+        : res.status(404).send("Recipe not found");
     }
   } catch (error) {
     next(error);

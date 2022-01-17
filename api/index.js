@@ -19,40 +19,54 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn, Diet } = require("./src/db.js");
-// const axios = require("axios");
-// const { API_KEY6 } = process.env;
+const axios = require("axios");
+const e = require("express");
+const { API_KEY6 } = process.env;
 
-const typeOfDiets = [
-  "gluten free",
-  "ketogenic",
-  "vegetarian",
-  "lacto vegetarian",
-  "ovo vegetarian",
-  "lacto ovo vegetarian",
-  "vegan",
-  "pescetarian",
-  "paleo",
-  "primal",
-  "low fodmap",
-  "whole 30",
-];
+// const typeOfDiets = [
+//   "gluten free",
+//   "ketogenic",
+//   "vegetarian",
+//   "lacto vegetarian",
+//   "ovo vegetarian",
+//   "lacto ovo vegetarian",
+//   "vegan",
+//   "pescetarian",
+//   "paleo",
+//   "primal",
+//   "low fodmap",
+//   "whole 30",
+//   'dairy free',  <-------- Esa esta en la api y no en la documentacion de spoonacular
+// ];
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(async () => {
-  typeOfDiets.map((diet) => {
-    Diet.create({
-      name: diet,
+  // typeOfDiets.map((diet) => {
+  //   Diet.create({
+  //     name: diet,
+  //   });
+  // });
+
+  const res = await axios.get(
+    ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
+  );
+  const modelDiet = new Set(
+    res.data.results
+      .map((el) => el.diets)
+      .flat()
+      .concat(
+        "ketogenic",
+        "vegetarian",
+        "lacto vegetarian",
+        "ovo vegetarian",
+        "primal"
+      )
+  );
+  modelDiet.forEach((el) => {
+    Diet.findOrCreate({
+      where: { name: el },
     });
   });
-
-  // const res = await axios.get(
-  //   ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
-  // );
-  // const modelDiet = res.data.results.filter((e) => ({
-  //   name: e.diets,
-  // }));
-  // // const filterDiet = [...new Set([modelDiet])];
-  // await Diet.create(modelDiet.name);
 
   server.listen(3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console

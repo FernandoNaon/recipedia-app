@@ -16,7 +16,7 @@ const CreateRecipe = () => {
     summary: "",
     rating: "",
     healthScore: "",
-    steps: "",
+    steps: [],
     diets: [],
   });
 

@@ -7,13 +7,20 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
   return (
     <div className={styles.navContainer}>
       <div>
-        <button onClick={refresh} className={styles.title}>
+        <button
+          onClick={(e) => {
+            refresh(e);
+          }}
+          className={styles.title}
+        >
           Recipedia 🍽️
         </button>
       </div>
       <div>
         <select className={styles.select} onChange={(e) => handleSort(e)}>
-          <option value="DEFAULT">Order By</option>
+          <option value="DEFAULT" disabled>
+            Order By
+          </option>
           <option value="abc-asc">ABC ↑</option>
           <option value="abc-des">ABC ↓</option>
           <option value="score-asc">Score ↑</option>

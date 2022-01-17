@@ -59,7 +59,7 @@ const getByName = async (name) => {
         model: Diet,
       },
     });
-
+    // console.log(recipesDbName);
     let allRecipesName = [...recipesDbName, ...recipesApiName];
     return allRecipesName;
   } catch (error) {

@@ -6,7 +6,7 @@ const postRecipe = async (
   rating,
   healthScore,
   steps,
-  diets, // se lo envio por body desde el front y lo relaciona con la tabla intermedia
+  diets,
   image
 ) => {
   try {
@@ -23,7 +23,6 @@ const postRecipe = async (
     });
 
     let dietDB = await Diet.findAll({
-      //el tipo de dieta lo creo con lo que ya tengo en mi db
       where: {
         name: diets,
       },
@@ -31,7 +30,9 @@ const postRecipe = async (
 
     // console.log(newRecipe);
     // console.log(dietDB);
-    await newRecipe.addDiets(dietDB);
+    if (dietDB) {
+      newRecipe.addDiets(dietDB);
+    }
 
     return newRecipe;
   } catch (error) {

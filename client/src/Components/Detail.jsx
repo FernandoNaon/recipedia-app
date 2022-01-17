@@ -13,7 +13,7 @@ const Detail = () => {
     dispatch(getDetail(id));
     // eslint-disable-next-line
   }, []);
-  console.log(recipeDetail);
+  // console.log(recipeDetail.steps);
 
   let { id } = useParams();
 
@@ -80,10 +80,10 @@ const Detail = () => {
             </div>
 
             <div className={styles.boxInf}>
-              {recipeDetail.diets || recipeDetail.createdInDb ? (
+              {recipeDetail.diets ? (
                 <div>
                   <h4 className={styles.titleTwo}>Diets</h4>
-                  {recipeDetail.diets || recipeDetail.createdInDb ? (
+                  {recipeDetail.diets ? (
                     recipeDetail?.diets.map((diet, i) => {
                       if (typeof diet === "object") {
                         return (

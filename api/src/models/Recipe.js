@@ -34,10 +34,5 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    createdInDb: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      defaultValue: true,
-    },
   });
 };

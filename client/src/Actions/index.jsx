@@ -13,11 +13,14 @@ export const getRecipes = () => {
     try {
       const res = await axios.get("http://localhost:3001/recipes");
       dispatch({
-        type: "GET_RECIPES",
+        type: GET_RECIPES,
         payload: res.data,
       });
     } catch (error) {
       console.log("getRecipes fallo");
+      alert(
+        "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
+      );
     }
   };
 };
@@ -29,37 +32,61 @@ export const getByName = (name) => {
         "http://localhost:3001/recipes?name=" + name
       );
       dispatch({
-        type: "GET_RECIPE_BY_NAME",
+        type: GET_RECIPE_BY_NAME,
         payload: recipe.data,
       });
     } catch (err) {
       console.log(err);
+      alert("Recipe not found");
     }
   };
 };
 
+// export const getDiets = () => {
+//   return async (dispatch) => {
+//     try {
+//       const types = await axios("http://localhost:3001/types");
+//       return dispatch({
+//         type: GET_DIETS,
+//         payload: types.data,
+//       });
+//     } catch (err) {
+//       console.log("Fallo getDiets");
+//       alert(
+//         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
+//       );
+//     }
+//   };
+// };
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      const types = await axios("http://localhost:3001/types");
-      return dispatch({
-        type: "GET_DIETS",
-        payload: types.data,
-      });
+      return fetch("http://localhost:3001/types")
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch({
+            type: GET_DIETS,
+            payload: data,
+          });
+        });
     } catch (error) {
-      console.log("error");
+      console.log("Fallo getDiets");
+      alert(
+        "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
+      );
     }
   };
 };
+
 export const filterByDiets = (payload) => {
-  //Por que no tiene dispatch?
   try {
     return {
-      type: "FILTER_BY_DIET",
+      type: FILTER_BY_DIET,
       payload,
     };
-  } catch (error) {
+  } catch (err) {
     console.log("Fallo filterByDiet");
+    alert("noy hay");
   }
 };
 
@@ -68,7 +95,7 @@ export function getDetail(payload) {
     try {
       const res = await axios.get(`http://localhost:3001/recipes/${payload}`);
       dispatch({
-        type: "GET_DETAIL",
+        type: GET_DETAIL,
         payload: res.data,
       });
     } catch (err) {
@@ -81,7 +108,7 @@ export function orderBy(payload) {
   return async function (dispatch) {
     try {
       dispatch({
-        type: "ORDER_BY",
+        type: ORDER_BY,
         payload,
       });
     } catch (err) {
@@ -99,7 +126,7 @@ export const createRecipe = (newRecipe) => {
       );
       console.log(postRecipe);
       return dispatch({
-        type: "POST_RECIPE",
+        type: POST_RECIPE,
         payload: postRecipe,
       });
     } catch (error) {
@@ -110,6 +137,6 @@ export const createRecipe = (newRecipe) => {
 
 export function trueLoader() {
   return {
-    type: "LOADER_TRUE",
+    type: LOADER_TRUE,
   };
 }
