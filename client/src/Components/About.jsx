@@ -33,12 +33,12 @@ const About = () => {
             developed in NodeJS, using ExpressJS.
           </h4>
           <h4>
-            {" "}
             For the database I used PostgreSQL and Sequelize as ORM. • The
             project includes functionalities such as sorting, filtering,
             pagination, a search input, cards to see details from the selected
             recipe, and allows to create a recipe through a controlled form.
           </h4>
+          <h3>Fernando Nicolas Naon</h3>
         </div>
       </div>
     </div>

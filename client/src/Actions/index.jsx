@@ -17,7 +17,7 @@ export const getRecipes = () => {
         payload: res.data,
       });
     } catch (error) {
-      console.log("getRecipes fallo");
+      console.log(error);
       alert(
         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
       );
@@ -35,8 +35,8 @@ export const getByName = (name) => {
         type: GET_RECIPE_BY_NAME,
         payload: recipe.data,
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
       alert("Recipe not found");
     }
   };
@@ -50,8 +50,8 @@ export const getByName = (name) => {
 //         type: GET_DIETS,
 //         payload: types.data,
 //       });
-//     } catch (err) {
-//       console.log("Fallo getDiets");
+//     } catch (error) {
+//       console.log(error);
 //       alert(
 //         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
 //       );
@@ -70,7 +70,7 @@ export const getDiets = () => {
           });
         });
     } catch (error) {
-      console.log("Fallo getDiets");
+      console.log(error);
       alert(
         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
       );
@@ -84,9 +84,8 @@ export const filterByDiets = (payload) => {
       type: FILTER_BY_DIET,
       payload,
     };
-  } catch (err) {
-    console.log("Fallo filterByDiet");
-    alert("noy hay");
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -98,8 +97,8 @@ export function getDetail(payload) {
         type: GET_DETAIL,
         payload: res.data,
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 }
@@ -111,8 +110,8 @@ export function orderBy(payload) {
         type: ORDER_BY,
         payload,
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 }

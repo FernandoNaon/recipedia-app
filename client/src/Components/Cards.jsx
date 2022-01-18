@@ -6,7 +6,6 @@ import styles from "./Cards.module.css";
 import Error from "./Error";
 
 const Cards = ({ allRecipes }) => {
-  // const loader = useSelector((state) => state.loader);
   return (
     <div>
       {!allRecipes.length ? (

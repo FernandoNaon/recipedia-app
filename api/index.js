@@ -36,7 +36,7 @@ const { API_KEY6 } = process.env;
 //   "primal",
 //   "low fodmap",
 //   "whole 30",
-//   'dairy free',  <-------- Esa esta en la api y no en la documentacion de spoonacular
+//   'dairy free',
 // ];
 
 // Syncing all the models at once.

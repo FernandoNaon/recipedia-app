@@ -15,7 +15,6 @@ const initialState = {
   diets: [],
   detail: [],
   loader: true,
-  error: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -62,9 +61,10 @@ function rootReducer(state = initialState, action) {
       };
 
     case ORDER_BY:
+      let filteredRecipes = state.recipesCopy;
       let sortRecipes;
       if (action.payload === "abc-asc") {
-        sortRecipes = state.recipes.sort(function (a, b) {
+        sortRecipes = filteredRecipes.sort(function (a, b) {
           if (a.name > b.name) {
             return 1;
           }
@@ -75,7 +75,7 @@ function rootReducer(state = initialState, action) {
         });
       }
       if (action.payload === "abc-des") {
-        sortRecipes = state.recipes.sort(function (a, b) {
+        sortRecipes = filteredRecipes.sort(function (a, b) {
           if (a.name > b.name) {
             return -1;
           }
@@ -86,7 +86,7 @@ function rootReducer(state = initialState, action) {
         });
       }
       if (action.payload === "score-asc") {
-        sortRecipes = state.recipes.sort(function (a, b) {
+        sortRecipes = filteredRecipes.sort(function (a, b) {
           if (a.rating > b.rating) {
             return -1;
           }
@@ -97,7 +97,7 @@ function rootReducer(state = initialState, action) {
         });
       }
       if (action.payload === "score-des") {
-        sortRecipes = state.recipes.sort(function (a, b) {
+        sortRecipes = filteredRecipes.sort(function (a, b) {
           if (a.rating > b.rating) {
             return 1;
           }

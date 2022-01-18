@@ -1,4 +1,4 @@
-export function validate(input) {
+export const validate = (input) => {
   let errors = {};
 
   if (!input.name) {
@@ -22,4 +22,4 @@ export function validate(input) {
   }
 
   return errors;
-}
+};

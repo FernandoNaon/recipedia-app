@@ -19,8 +19,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     image: {
-      type: DataTypes.STRING,
-      // defaultValue: "http://clipart-library.com/img/1778235.png",
+      type: DataTypes.TEXT,
+      // defaultValue:"https://1.bp.blogspot.com/-otqwtLOpwV0/Xym3NGXtoEI/AAAAAAAAiNE/pB8iXR2dHP0ergt-pmVa1LaIZkohhHs2ACLcBGAsYHQ/w410-h307/la%2Bnota%2Buno.jpg";
     },
     rating: {
       type: DataTypes.INTEGER,
