@@ -38,9 +38,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(getRecipes());
     dispatch(getDiets());
-    return () => {
-      dispatch(trueLoader());
-    };
+    dispatch(trueLoader());
   }, [dispatch]);
 
   const handleFilterDiets = (e) => {
@@ -75,7 +73,7 @@ const Home = () => {
         />
       </div>
       <div className={styles.cardsContainer}>
-        {loader ? (
+        {loader || !allRecipes.length ? (
           <Loader />
         ) : (
           <div>

@@ -11,7 +11,7 @@ export const LOADER_TRUE = "LOADER_TRUE";
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("http://localhost:3001/recipes");
+      const res = await axios.get("https://recipedia-pi.herokuapp.com/recipes");
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
@@ -29,7 +29,7 @@ export const getByName = (name) => {
   return async (dispatch) => {
     try {
       const recipe = await axios.get(
-        "http://localhost:3001/recipes?name=" + name
+        "https://recipedia-pi.herokuapp.com/recipes?name=" + name
       );
       dispatch({
         type: GET_RECIPE_BY_NAME,
@@ -61,7 +61,7 @@ export const getByName = (name) => {
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      return fetch("http://localhost:3001/types")
+      return fetch("https://recipedia-pi.herokuapp.com/types")
         .then((res) => res.json())
         .then((data) => {
           dispatch({
@@ -92,7 +92,9 @@ export const filterByDiets = (payload) => {
 export function getDetail(payload) {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`http://localhost:3001/recipes/${payload}`);
+      const res = await axios.get(
+        `https://recipedia-pi.herokuapp.com/recipes/${payload}`
+      );
       dispatch({
         type: GET_DETAIL,
         payload: res.data,
@@ -120,7 +122,7 @@ export const createRecipe = (newRecipe) => {
   return async (dispatch) => {
     try {
       const postRecipe = await axios.post(
-        "http://localhost:3001/recipe",
+        "https://recipedia-pi.herokuapp.com/recipe",
         newRecipe
       );
       console.log(postRecipe);

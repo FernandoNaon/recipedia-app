@@ -20,6 +20,28 @@
   color: rgb(65, 60, 60);
 }
 
+.cardContainer:hover {
+  margin: 15px;
+  height: 420px;
+  width: 340px;
+  background-color: #fff5ce2a;
+  backdrop-filter: blur(18px);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 8px;
+  -webkit-box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.664);
+  box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.555);
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: rgb(146, 144, 144);
+}
+
 .cardImage {
   height: 230px;
   width: auto;

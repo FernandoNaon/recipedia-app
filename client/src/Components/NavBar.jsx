@@ -18,9 +18,7 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
       </div>
       <div>
         <select className={styles.select} onChange={(e) => handleSort(e)}>
-          <option value="DEFAULT" disabled>
-            Order By
-          </option>
+          <option>Order By</option>
           <option value="abc-asc">ABC ↑</option>
           <option value="abc-des">ABC ↓</option>
           <option value="score-asc">Score ↑</option>
@@ -29,9 +27,7 @@ const NavBar = ({ diets, filterByDiets, handleSort, refresh }) => {
       </div>
       <div>
         <select className={styles.select} onChange={(e) => filterByDiets(e)}>
-          <option value="DEFAULT" disabled>
-            Diets
-          </option>
+          <option>Diets</option>
           <option value="all">All</option>
           console.log(diets)
           {diets?.map((diets, i) => {

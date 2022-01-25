@@ -23,7 +23,6 @@ const About = () => {
             Recipedia is a Single Page Application developed on my own as part
             of a 3-week challenge at Henry Bootcamp.
           </h2>
-
           <h4>
             I used Reactjs for the Front End and Redux for state management.
           </h4>
@@ -39,6 +38,41 @@ const About = () => {
             recipe, and allows to create a recipe through a controlled form.
           </h4>
           <h3>Fernando Nicolas Naon</h3>
+          <div>
+            <a
+              href="https://github.com/FernandoNaon"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className={styles.icons}
+                src="https://img.icons8.com/material-outlined/48/000000/github.png"
+                alt="github-icon"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/fernando-naon/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className={styles.icons}
+                src="https://img.icons8.com/glyph-neue/64/000000/linkedin.png"
+                alt="linkedin-icon"
+              />
+            </a>
+            <a
+              href="mailto: fernandonaon@gmail.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                className={styles.icons}
+                src="https://img.icons8.com/ios-filled/50/000000/apple-mail.png"
+                alt="email-icon"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>
