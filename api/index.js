@@ -46,26 +46,30 @@ conn.sync({ force: true }).then(async () => {
   //   });
   // });
 
-  const res = await axios.get(
-    ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
-  );
-  const modelDiet = new Set(
-    res.data.results
-      .map((el) => el.diets)
-      .flat()
-      .concat(
-        "ketogenic",
-        "vegetarian",
-        "lacto vegetarian",
-        "ovo vegetarian",
-        "primal"
-      )
-  );
-  modelDiet.forEach((el) => {
-    Diet.findOrCreate({
-      where: { name: el },
+  try {
+    const res = await axios.get(
+      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
+    );
+    const modelDiet = new Set(
+      res.data.results
+        .map((el) => el.diets)
+        .flat()
+        .concat(
+          "ketogenic",
+          "vegetarian",
+          "lacto vegetarian",
+          "ovo vegetarian",
+          "primal"
+        )
+    );
+    modelDiet.forEach((el) => {
+      Diet.findOrCreate({
+        where: { name: el },
+      });
     });
-  });
+  } catch (err) {
+    console.error(err);
+  }
 
   server.listen(process.env.PORT || 3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console
