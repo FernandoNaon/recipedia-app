@@ -20,7 +20,7 @@
 const server = require("./src/app.js");
 const { conn, Diet } = require("./src/db.js");
 const axios = require("axios");
-const { API_KEY6 } = process.env;
+const { API_KEY6, PORT } = process.env;
 
 // const typeOfDiets = [
 //   "gluten free",
@@ -71,7 +71,7 @@ conn.sync({ force: true }).then(async () => {
     console.error(err);
   }
 
-  server.listen(process.env.PORT || 3001, () => {
+  server.listen(PORT || 3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console
   });
 });
