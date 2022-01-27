@@ -10,7 +10,7 @@ router.get("/", async function (req, res, next) {
     dietTypes
       ? res.status(200).json(dietTypes)
       : res.status(404).send("Diet types not found");
-    // console.log(dietTypes);
+    console.log(dietTypes);
   } catch (err) {
     next(err);
   }

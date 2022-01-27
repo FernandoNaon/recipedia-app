@@ -13,10 +13,8 @@ const Paged = ({ recipesPerPage, allRecipes, paged }) => {
       <div className={styles.pagedContainer}>
         {pageAmount?.map((number) => {
           return (
-            <div key={number}>
-              <p className={styles.btn} onClick={() => paged(number)}>
-                {number}
-              </p>
+            <div key={number} className={styles.btn}>
+              <p onClick={() => paged(number)}>{number}</p>
             </div>
           );
         })}

@@ -73,85 +73,87 @@ const CreateRecipe = () => {
         <div className={styles.createContainer}>
           <div>
             <form onSubmit={handleSubmit}>
-              <div className={styles.formContainer}>
-                <div>
-                  <label>Name:</label>
-                  <input
-                    className={styles.createInput}
-                    type="text"
-                    value={input.name}
-                    name="name"
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-                {errors.name && (
-                  <div className={styles.error}>{errors.name}</div>
-                )}
+              <div className={styles.mainContainer}>
+                <div className={styles.formContainer}>
+                  <div>
+                    <label>Name:</label>
+                    <input
+                      className={styles.createInput}
+                      type="text"
+                      value={input.name}
+                      name="name"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                  {errors.name && (
+                    <div className={styles.error}>{errors.name}</div>
+                  )}
 
-                <div>
-                  <label>Summary:</label>
-                  <input
-                    className={styles.createInput}
-                    type="text"
-                    value={input.summary}
-                    name="summary"
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-                {errors.summary && (
-                  <div className={styles.error}>{errors.summary}</div>
-                )}
+                  <div>
+                    <label>Summary:</label>
+                    <input
+                      className={styles.createInput}
+                      type="text"
+                      value={input.summary}
+                      name="summary"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                  {errors.summary && (
+                    <div className={styles.error}>{errors.summary}</div>
+                  )}
 
-                <div>
-                  <label>Image:</label>
-                  <input
-                    className={styles.createInput}
-                    type="url"
-                    value={input.image}
-                    name="image"
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
+                  <div>
+                    <label>How good is this:</label>
+                    <input
+                      className={styles.createInput}
+                      type="number"
+                      value={input.rating}
+                      name="rating"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
 
-                <div>
-                  <label>How good is this:</label>
-                  <input
-                    className={styles.createInput}
-                    type="number"
-                    value={input.rating}
-                    name="rating"
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
+                  {errors.rating && (
+                    <div className={styles.error}>{errors.rating}</div>
+                  )}
 
-                {errors.rating && (
-                  <div className={styles.error}>{errors.rating}</div>
-                )}
-
-                <div>
-                  <label>How healthy is this:</label>
-                  <input
-                    className={styles.createInput}
-                    type="number"
-                    value={input.healthScore}
-                    name="healthScore"
-                    onChange={(e) => handleInputChange(e)}
-                  />
-                </div>
-                {errors.healthScore && (
-                  <div className={styles.error}>{errors.healthScore}</div>
-                )}
-                <div>
-                  <label>Steps</label>
-                  <input
-                    className={styles.createInput}
-                    type="text"
-                    value={input.steps}
-                    name="steps"
-                    onChange={(e) => handleInputChange(e)}
-                  />
+                  <div>
+                    <label>How healthy is this:</label>
+                    <input
+                      className={styles.createInput}
+                      type="number"
+                      value={input.healthScore}
+                      name="healthScore"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                  {errors.healthScore && (
+                    <div className={styles.error}>{errors.healthScore}</div>
+                  )}
+                  <div>
+                    <label>Steps</label>
+                    <input
+                      className={styles.createInput}
+                      type="text"
+                      value={input.steps}
+                      name="steps"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
+                  <div>
+                    <label>Image:</label>
+                    <input
+                      className={styles.createInput}
+                      type="url"
+                      value={input.image}
+                      name="image"
+                      onChange={(e) => handleInputChange(e)}
+                    />
+                  </div>
                 </div>
               </div>
+
               <h3 className={styles.titleTwo}>
                 Select the type of diet for your recipe
               </h3>
@@ -175,7 +177,9 @@ const CreateRecipe = () => {
                   !errors.summary &&
                   !errors.rating &&
                   !errors.healthScore && (
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button className={styles.submit} onClick={handleSubmit}>
+                      Submit
+                    </button>
                   )}
               </div>
             </form>

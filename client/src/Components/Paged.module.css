@@ -1,4 +1,5 @@
 .pagedContainer {
+  margin-top: 10px;
   margin-bottom: 10px;
   display: inline-flex;
   justify-content: space-evenly;
@@ -6,11 +7,12 @@
 }
 
 .btn {
-  width: 15px;
-  padding: 10px;
+  width: 28px;
+  height: 35px;
+  padding: 5px;
   border: 2px rgba(32, 31, 31, 0.555);
   border-radius: 30%;
-  background: #96ceb4;
+  background: #96ceb4da;
   color: white;
 }
 

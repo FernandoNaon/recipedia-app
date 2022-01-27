@@ -11,7 +11,7 @@ export const LOADER_TRUE = "LOADER_TRUE";
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("https://recipedia-pi.herokuapp.com/recipes");
+      const res = await axios.get("/recipes");
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
@@ -28,9 +28,7 @@ export const getRecipes = () => {
 export const getByName = (name) => {
   return async (dispatch) => {
     try {
-      const recipe = await axios.get(
-        "https://recipedia-pi.herokuapp.com/recipes?name=" + name
-      );
+      const recipe = await axios.get("/recipes?name=" + name);
       dispatch({
         type: GET_RECIPE_BY_NAME,
         payload: recipe.data,
@@ -42,33 +40,14 @@ export const getByName = (name) => {
   };
 };
 
-// export const getDiets = () => {
-//   return async (dispatch) => {
-//     try {
-//       const types = await axios("http://localhost:3001/types");
-//       return dispatch({
-//         type: GET_DIETS,
-//         payload: types.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//       alert(
-//         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
-//       );
-//     }
-//   };
-// };
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      return fetch("https://recipedia-pi.herokuapp.com/types")
-        .then((res) => res.json())
-        .then((data) => {
-          dispatch({
-            type: GET_DIETS,
-            payload: data,
-          });
-        });
+      const types = await axios("/types");
+      return dispatch({
+        type: GET_DIETS,
+        payload: types.data,
+      });
     } catch (error) {
       console.log(error);
       alert(
@@ -77,6 +56,25 @@ export const getDiets = () => {
     }
   };
 };
+// export const getDiets = () => {
+//   return async (dispatch) => {
+//     try {
+//       return fetch("/types")
+//         .then((res) => res.json())
+//         .then((data) => {
+//           dispatch({
+//             type: GET_DIETS,
+//             payload: data,
+//           });
+//         });
+//     } catch (error) {
+//       console.log(error);
+//       alert(
+//         "Your daily points limit of 150 has been reached. Please upgrade your plan to continue using the API."
+//       );
+//     }
+//   };
+// };
 
 export const filterByDiets = (payload) => {
   try {
@@ -92,9 +90,8 @@ export const filterByDiets = (payload) => {
 export function getDetail(payload) {
   return async (dispatch) => {
     try {
-      const res = await axios.get(
-        `https://recipedia-pi.herokuapp.com/recipes/${payload}`
-      );
+      const res = await axios.get(`/recipes/${payload}`);
+
       dispatch({
         type: GET_DETAIL,
         payload: res.data,
@@ -121,10 +118,7 @@ export function orderBy(payload) {
 export const createRecipe = (newRecipe) => {
   return async (dispatch) => {
     try {
-      const postRecipe = await axios.post(
-        "https://recipedia-pi.herokuapp.com/recipe",
-        newRecipe
-      );
+      const postRecipe = await axios.post("/recipe", newRecipe);
       console.log(postRecipe);
       return dispatch({
         type: POST_RECIPE,

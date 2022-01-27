@@ -1,58 +1,48 @@
 .cardContainer {
-  margin: 15px;
-  height: 400px;
+  margin: 20px;
+  height: 410px;
   width: 320px;
-  background-color: #ffefad2a;
+  background-image: url("../Assets/cardBg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
   backdrop-filter: blur(18px);
-  left: 0;
+  /* left: 0;
   right: 0;
   top: 0;
-  bottom: 0;
+  bottom: 0; */
   border-radius: 8px;
   -webkit-box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.2);
   box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.2);
   font-family: "Poppins", sans-serif;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   align-items: center;
   text-align: center;
-  color: rgb(65, 60, 60);
 }
 
 .cardContainer:hover {
-  margin: 15px;
-  height: 420px;
-  width: 340px;
-  background-color: #fff5ce2a;
-  backdrop-filter: blur(18px);
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 8px;
   -webkit-box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.664);
-  box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.555);
-  font-family: "Poppins", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: rgb(146, 144, 144);
+  box-shadow: 20px 20px 22px rgba(223, 105, 27, 0.555);
 }
 
 .cardImage {
-  height: 230px;
+  height: 236px;
   width: auto;
-  margin: auto;
+  top: 0;
+  border-radius: 8px;
+  margin-top: 0;
 }
 
 .title {
   text-decoration: none;
-  margin: auto;
+  color: rgba(51, 46, 46, 0.808);
+  background-color: rgba(83, 76, 76, 0.253);
+  border-radius: 8px;
 }
 
 .diets {
-  margin: auto;
+  margin-bottom: 15px;
+  font-weight: 200;
+  color: rgb(70, 64, 64);
 }
