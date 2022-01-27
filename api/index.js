@@ -20,7 +20,6 @@
 const server = require("./src/app.js");
 const { conn, Diet } = require("./src/db.js");
 const axios = require("axios");
-const e = require("express");
 const { API_KEY6 } = process.env;
 
 // const typeOfDiets = [

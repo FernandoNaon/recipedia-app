@@ -28,7 +28,7 @@ let sequelize =
         },
         ssl: true,
       })
-    : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
+    : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}`, {
         logging: false,
         native: false,
       });
