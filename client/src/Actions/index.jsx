@@ -11,9 +11,7 @@ export const LOADER_TRUE = "LOADER_TRUE";
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(
-        "https://deploy-backend-pi.herokuapp.com/recipes"
-      );
+      const res = await axios.get("http://localhost:3001/recipes");
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
@@ -31,7 +29,7 @@ export const getByName = (name) => {
   return async (dispatch) => {
     try {
       const recipe = await axios.get(
-        "https://deploy-backend-pi.herokuapp.com/recipes?name=" + name
+        "http://localhost:3001/recipes?name=" + name
       );
       dispatch({
         type: GET_RECIPE_BY_NAME,
@@ -47,9 +45,7 @@ export const getByName = (name) => {
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      const types = await axios(
-        "https://deploy-backend-pi.herokuapp.com/types"
-      );
+      const types = await axios("http://localhost:3001/types");
       return dispatch({
         type: GET_DIETS,
         payload: types.data,
@@ -96,9 +92,7 @@ export const filterByDiets = (payload) => {
 export function getDetail(payload) {
   return async (dispatch) => {
     try {
-      const res = await axios.get(
-        `https://deploy-backend-pi.herokuapp.com/recipes/${payload}`
-      );
+      const res = await axios.get(`http://localhost:3001/recipes/${payload}`);
 
       dispatch({
         type: GET_DETAIL,
@@ -127,7 +121,7 @@ export const createRecipe = (newRecipe) => {
   return async (dispatch) => {
     try {
       const postRecipe = await axios.post(
-        "https://deploy-backend-pi.herokuapp.com/recipe",
+        "http://localhost:3001/recipe",
         newRecipe
       );
       console.log(postRecipe);

@@ -20,58 +20,58 @@
 const server = require("./src/app.js");
 const { conn, Diet } = require("./src/db.js");
 const axios = require("axios");
-const { API_KEY6, PORT } = process.env;
+// const { API_KEY6 } = process.env;
 
-// const typeOfDiets = [
-//   "gluten free",
-//   "ketogenic",
-//   "vegetarian",
-//   "lacto vegetarian",
-//   "ovo vegetarian",
-//   "lacto ovo vegetarian",
-//   "vegan",
-//   "pescetarian",
-//   "paleo",
-//   "primal",
-//   "low fodmap",
-//   "whole 30",
-//   'dairy free',
-// ];
+const typeOfDiets = [
+  "gluten free",
+  "ketogenic",
+  "vegetarian",
+  "lacto vegetarian",
+  "ovo vegetarian",
+  "lacto ovo vegetarian",
+  "vegan",
+  "pescetarian",
+  "paleo",
+  "primal",
+  "low fodmap",
+  "whole 30",
+  "dairy free",
+];
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
-  // typeOfDiets.map((diet) => {
-  //   Diet.create({
-  //     name: diet,
-  //   });
-  // });
-
+conn.sync({ force: true }).then(() => {
   try {
-    const res = await axios.get(
-      ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
-    );
-    const modelDiet = new Set(
-      res.data.results
-        .map((el) => el.diets)
-        .flat()
-        .concat(
-          "ketogenic",
-          "vegetarian",
-          "lacto vegetarian",
-          "ovo vegetarian",
-          "primal"
-        )
-    );
-    modelDiet.forEach((el) => {
-      Diet.findOrCreate({
-        where: { name: el },
+    typeOfDiets.map((diet) => {
+      Diet.create({
+        name: diet,
       });
     });
+
+    // const res = await axios.get(
+    //   ` https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY6}&number=100&addRecipeInformation=true`
+    // );
+    // const modelDiet = new Set(
+    //   res.data.results
+    //     .map((el) => el.diets)
+    //     .flat()
+    //     .concat(
+    //       "ketogenic",
+    //       "vegetarian",
+    //       "lacto vegetarian",
+    //       "ovo vegetarian",
+    //       "primal"
+    //     )
+    // );
+    // modelDiet.forEach((el) => {
+    //   Diet.findOrCreate({
+    //     where: { name: el },
+    //   });
+    // });
   } catch (err) {
     console.error(err);
   }
 
-  server.listen(PORT || 3001, () => {
+  server.listen(3001, () => {
     console.log("%s listening at 3001 - Diets loaded"); // eslint-disable-line no-console
   });
 });
