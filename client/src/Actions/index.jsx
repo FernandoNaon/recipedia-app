@@ -11,7 +11,9 @@ export const LOADER_TRUE = "LOADER_TRUE";
 export const getRecipes = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("https://dashboard.heroku.com/apps/deploy-backend-pi/deploy/github/recipes");
+      const res = await axios.get(
+        "https://deploy-backend-pi.herokuapp.com/recipes"
+      );
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
@@ -28,7 +30,9 @@ export const getRecipes = () => {
 export const getByName = (name) => {
   return async (dispatch) => {
     try {
-      const recipe = await axios.get("https://dashboard.heroku.com/apps/deploy-backend-pi/deploy/github/recipes?name=" + name);
+      const recipe = await axios.get(
+        "https://deploy-backend-pi.herokuapp.com/recipes?name=" + name
+      );
       dispatch({
         type: GET_RECIPE_BY_NAME,
         payload: recipe.data,
@@ -43,7 +47,9 @@ export const getByName = (name) => {
 export const getDiets = () => {
   return async (dispatch) => {
     try {
-      const types = await axios("https://dashboard.heroku.com/apps/deploy-backend-pi/deploy/github/types");
+      const types = await axios(
+        "https://deploy-backend-pi.herokuapp.com/types"
+      );
       return dispatch({
         type: GET_DIETS,
         payload: types.data,
@@ -90,7 +96,9 @@ export const filterByDiets = (payload) => {
 export function getDetail(payload) {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`https://dashboard.heroku.com/apps/deploy-backend-pi/deploy/github/recipes/${payload}`);
+      const res = await axios.get(
+        `https://deploy-backend-pi.herokuapp.com/recipes/${payload}`
+      );
 
       dispatch({
         type: GET_DETAIL,
@@ -118,7 +126,10 @@ export function orderBy(payload) {
 export const createRecipe = (newRecipe) => {
   return async (dispatch) => {
     try {
-      const postRecipe = await axios.post("https://dashboard.heroku.com/apps/deploy-backend-pi/deploy/github/recipe", newRecipe);
+      const postRecipe = await axios.post(
+        "https://deploy-backend-pi.herokuapp.com/recipe",
+        newRecipe
+      );
       console.log(postRecipe);
       return dispatch({
         type: POST_RECIPE,
